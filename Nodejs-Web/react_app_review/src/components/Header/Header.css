@@ -1,0 +1,9 @@
+.header {
+    border: 2px soild #ddd;
+    font-size: 30px;
+    color: red;
+}
+
+.content {
+    color: blue;
+}

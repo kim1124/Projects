@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>자바스크립트 기본</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+      .color_add {color : skyblue;}
+      .panel {  margin-bottom : 0;}
+      .panel-body {  display: none;}
+      *{
+
+        
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <script src="jsbasic.js"></script> -->
+    <h1>JQuery 실습</h1>
+    <!-- <div id="actionDiv" data="Tag data">Click !! </div> -->
+    <!-- 아코디언
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">Panel heading without title</div>
+        <div class="panel-body">
+            Panel content
+        </div>
+      </div>
+      <div class="panel panel-default">
+          <div class="panel-heading">Panel heading without title</div>
+          <div class="panel-body">
+              Panel content
+          </div>
+      </div>
+    </div>
+    -->
+
+    <div class="container" style="padding-top : 100px;">
+    <form action="" method="post" id="submitForm">
+      <table class="table table-bordered">
+        <tr>
+          <td>제목</td>
+          <td><input type="text" class="form-control" name="subject"></td>
+        </tr>
+        <tr>
+          <td>이메일</td>
+          <td><input type="text" class="form-control" name="email"></td>
+        </tr>
+        <tr>
+          <td>거주지</td>
+          <td>
+            <select class="form-control" name="area">
+              <option value="">선택하세요.</option>
+              <option value="서울시">서울</option>
+              <option value="대전시">대전</option>
+              <option value="용인시">용인</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>내용</td>
+          <td>
+            <textarea class="form-control" name="content"></textarea>
+          </td>
+        </tr>
+      </table>
+        <div>
+          <button class="btn btn-primary">등록</button>
+        </div>
+      </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+      // $(document).ready(function(){
+      //
+      //   console.log("JQuery 로드 !!");
+      //
+      // });
+      //
+      // $(function(){
+      //
+      //   console.log("JQuery 다시 로드 !!");
+      //
+      // });
+
+      (function($){
+
+        // $(document).ready(function(){
+        //
+        //   console.log("JQuery 영역에서만 동작 !!");
+        //
+        //   $('#actionDiv').click(function(){
+        //
+        //     var me = $(this);
+        //     var attr = me.attr("data");
+        //
+        //     me.html("클릭후");
+        //     //me.css("color", "blue");
+        //     // me.addClass("color_add");
+        //     // me.toggleClass("color_add");
+        //     me.fadeOut(500);
+        //
+        //   });
+        $(document).ready(function() {
+          $('.panel-heading').click(function(){
+
+              var me = $(this);
+
+              me.next().slideToggle(400);
+          });
+
+          $('#submitForm').submit(function(){
+
+            var subject = $("#submitForm input[name=subject]");
+            var email = $("#submitForm input[name=email]");
+            var area = $("#submitForm select[name=area]");
+            var content = $("#submitForm textarea[name=content]");
+
+            if(!subject.val()){
+
+              alert("제목을 입력하세요.");
+
+              subject.focus();
+
+            }
+
+            if(!email.val()){
+
+              alert("이메일을 입력하세요.");
+
+              email.focus();
+
+            }
+
+            if(!area.val()){
+
+              alert("지역을 선택하세요.");
+
+              area.focus();
+
+            }
+
+            if(!content.val()){
+
+              alert("내용을 입력하세요.");
+
+              content.focus();
+
+            }
+
+            return false;
+
+          });
+
+        });
+
+        })(jQuery);
+
+    </script>
+  </body>
+</html>

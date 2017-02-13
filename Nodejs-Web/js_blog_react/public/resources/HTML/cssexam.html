@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+      <title>CSS Layout example</title>
+      <style type="text/css"> html, body, div, span, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        abbr, address, cite, code,
+        del, dfn, em, img, ins, kbd, q, samp,
+        small, strong, sub, sup, var,
+        b, i,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section, summary,
+        time, mark, audio, video {
+          margin:0;
+          padding:0;
+          border:0;
+          outline:0;
+        }
+
+        .div_header {
+          height : 30vh;
+          color : white;
+          font-size: 50px;
+          font-weight: bold;
+          background-color: skyblue;
+        }
+
+        .div_content1 {
+
+          width : 30%;
+          height : 33vh;
+          float : left;
+          color : white;
+          font-size: 50px;
+          font-weight: bold;
+          background-color: orange;
+
+        }
+
+        .div_content2 {
+
+          float : left;
+          width : 30%;
+          height : 33vh;
+          color : white;
+          font-size: 50px;
+          font-weight: bold;
+          background-color: green;
+
+        }
+
+        .div_content3_1 {
+          color : white;
+          float : left;
+          height : 16.5vh;
+          font-size: 50px;
+          font-weight: bold;
+          background-color: yellow;
+        }
+
+        .div_content3_2 {
+          color : white;
+          height : 16.5vh;
+          font-size: 50px;
+          font-weight: bold;
+          background-color: pink;
+
+        }
+
+        .div_footer {
+          color : white;
+          height : 33vh;
+          clear : both;
+          font-size: 50px;
+          font-weight: bold;
+          background-color: navy;
+        }
+
+        .mainborder {
+          width : 100%;
+          height : 100%;
+          border-width: 1px;
+          border-color: black;
+          border-style: solid;
+          margin-top : 30px;
+        }
+
+      </style>
+    </head>
+    <body>
+      <h1 style="text-align: center;"> CSS Layout 실습 </h1>
+      <div class="mainborder">
+        <div class="div_header">Header area</div>
+          <div class="div_content1">Content area 1</div>
+          <div class="div_content2">Content area 2</div>
+          <div>
+            <div class="div_content3_1">Content area 1</div>
+            <div class="div_content3_2">Content area 2</div>
+          </div>
+        <div class="div_footer">Footer area</div>
+
+      </div>
+    </body>
+</html>

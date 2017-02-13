@@ -1,0 +1,21 @@
+<% include ../header.ejs %>
+  <table class="table table-bordered">
+    <tr class="table_header">
+      <th>제목</th>
+      <th>작성일</th>
+      <th>삭제</th>
+    </tr>
+    <% posts.forEach(function(post){%>
+      <tr>
+        <td><a href="/posts/detail/<%=post.id%>"><%=post.title%></a></td>
+        <td style="text-align:center; vertical-align: middle;"><%=post.getDate.year%> / <%=post.getDate.month%> / <%=post.getDate.day%></td>
+        <td style="text-align:center; vertical-align: middle;"><a href="/posts/delete/<%=post.id%>" onclick="return confirm('삭제하시겠습니까?')" class="btn btn-danger">삭제</a></td>
+      </tr>
+    <%});%>
+  </table>
+  <div>
+    <a href="/posts/write" class="btn btn-primary">글 작성하기</a>
+    <a href="/accounts/join" class="btn btn-info">회원 가입</a>
+  </div>
+
+<% include ../footer.ejs %>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>자바스크립트 기본</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+        .color_add {
+            color: skyblue;
+        }
+
+        .panel {
+            margin-bottom: 0;
+        }
+
+        .panel-body {
+            display: none;
+        }
+
+        .clockDiv {
+            margin-bottom: 20px;
+        }
+
+        .clockDiv span {
+            font-size: 40px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <script src="jsbasic.js"></script> -->
+    <h1>JQuery 스탑워치 실습</h1>
+    <!-- <div id="actionDiv" data="Tag data">Click !! </div> -->
+    <!-- 아코디언
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">Panel heading without title</div>
+        <div class="panel-body">
+            Panel content
+        </div>
+      </div>
+      <div class="panel panel-default">
+          <div class="panel-heading">Panel heading without title</div>
+          <div class="panel-body">
+              Panel content
+          </div>
+      </div>
+    </div>
+    -->
+
+    <div class="container">
+        <div class="clockDiv">
+            <span id="min">00</span>
+            <span id="divv">:</span>
+            <span id="sec">00</span>
+        </div>
+        <div>
+            <a class="btn btn-default" id="start">시작</a>
+            <a class="btn btn-danger" id="stop">중지</a>
+            <a class="btn btn-primary" id="reset">리셋</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // $(document).ready(function(){
+        //
+        //   console.log("JQuery 로드 !!");
+        //
+        // });
+        //
+        // $(function(){
+        //
+        //   console.log("JQuery 다시 로드 !!");
+        //
+        // });
+
+        var Timer = {
+
+            isPending: false,
+            currentSec: 0,
+            currentMin: 0,
+            startTimer: function() {
+
+                if (this.isPending) {
+
+                    this.currentSec += 1;
+
+                    if (this.currentSec === 60) {
+
+                        this.currentSec = 0;
+                        this.currentMin += 1;
+
+                    }
+
+                    $('#min').html(('0' + this.currentMin).slice(-2));
+                    $('#sec').html(('0' + this.currentSec).slice(-2));
+
+                    setTimeout("Timer.startTimer()", 1000);
+
+                }
+
+            },
+            stopTimer: function() {
+
+                this.isPending = false;
+
+            },
+            resetTimer: function() {
+
+                this.isPending = false;
+                this.currentSec = 0;
+                this.currentMin = 0;
+                $('#min').html("00");
+                $('#sec').html("00");
+
+            }
+
+        };
+
+        (function($) {
+
+            // $(document).ready(function(){
+            //
+            //   console.log("JQuery 영역에서만 동작 !!");
+            //
+            //   $('#actionDiv').click(function(){
+            //
+            //     var me = $(this);
+            //     var attr = me.attr("data");
+            //
+            //     me.html("클릭후");
+            //     //me.css("color", "blue");
+            //     // me.addClass("color_add");
+            //     // me.toggleClass("color_add");
+            //     me.fadeOut(500);
+            //
+            //   });
+            $(document).ready(function() {
+
+                $('#start').click(function() {
+
+                    Timer.isPending = true;
+                    Timer.startTimer();
+
+                });
+
+                $('#stop').click(function() {
+
+                    Timer.stopTimer();
+
+                });
+
+                $('#reset').click(function() {
+
+                    Timer.resetTimer();
+
+                });
+
+            });
+
+        })(jQuery);
+    </script>
+</body>
+
+</html>
