@@ -1,0 +1,22 @@
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script src="{% static 'hello.js' %}"></script>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+    <h3>{{ post.pk }}번 글 사진보기</h3>
+	<div>
+		{% if post.image %}
+		<img src="{{ post.image.url }}" />
+		{% endif %}
+	</div>
+</body>
+
+</html>

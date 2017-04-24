@@ -1,0 +1,77 @@
+{% load tags %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ post.pk }}번 게시글 보기</title>
+	<style>
+		.cls_postlist {
+			width : 100%;
+			border : 1px solid black;
+		}
+
+		.cls_postlist th, tr, td {
+			border : 1px solid black;
+		}
+
+		.cls_image_size {
+			width : 100vw;
+			height : 100vh;
+		}
+
+		thead th{width : 200px;}
+		tbody td{width: 200px; text-align: center;}
+
+	</style>
+</head>
+<body>
+	<h1> {{ post.title }} </h1>
+	<header>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<table class="cls_postlist">
+			<thead>
+				<tr>
+					<th>작성자</th>
+					<th>잠김 여부</th>
+					<th>작성 일자</th>
+					<th>수정 일자</th>
+					<th>좋아요</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ post.user.username }}</td>
+					<td>{{ post.locked }}</td>
+					<td>{{ post.created_at }}</td>
+					<td>{{ post.updated_at }}</td>
+					<td>
+						<a href="{% url 'photos:recommedtargetpost' post.pk %}">
+						{% if post|did_like:request.user %}
+						좋아요 취소
+						{% else %}
+						좋아요
+						{% endif %}</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</header>
+	<br>
+	<br>
+	<section>
+		{% addnim %}
+			<p>당신은 {{ request.user }}</p>
+			<p>{{ post.user }}이 올린 사진</p>
+		{% endaddnim %}
+		<article>
+			{% if post.image %}
+			<img class="cls_image_size" src="{{ post.image.url }}" />
+			{% endif %}
+			<br>
+			<br>
+			<br>
+			{{ post.content }}
+		</article>
+	</section>
+</body>
+</html>

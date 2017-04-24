@@ -1,0 +1,31 @@
+<body>
+  <h1>Pty.JS Web terminal</h1>
+  <hr>
+  <div id="terminal"></div>
+  <!-- 페이지 렌더링 성능을 올리기 위한 동적 스크립트 삽입 -->
+  <script>
+    (function(){
+
+      // 자바스크립트 템플릿 동적 로드 함수
+
+      function asyncJsTemplate(){
+
+        var dom_script = document.createElement('script');
+
+        dom_script.type = 'text/javascript';
+        dom_script.async = true;
+        dom_script.src = '/webterminal.js';
+
+        var arr_domscript = document.getElementByTagName('script')[0];
+
+        arr_domscript.parentNode.insertBefore(dom_script, arr_domscript);
+
+      }
+
+      // 인터넷 익스폴러 혹은 그외의 브라우저에서 이벤트 연결
+
+      window.attachEvent ? window.attachEvent('onload', asyncJsTemplate) : window.addEventListener('load', asyncJsTemplate, false);
+
+    })();
+  </script>
+</body>

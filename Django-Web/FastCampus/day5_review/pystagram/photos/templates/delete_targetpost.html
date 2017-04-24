@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ post.title }} 게시글 삭제</title>
+	<style>
+
+		.cls_delete_btn {
+
+			width : 100px;
+
+		}
+
+		.cls_control_contain {
+
+			vertical-align : middle;
+
+		}
+
+	</style>
+</head>
+<body>
+	<header>
+		<h1>글 삭제</h1>
+	</header>
+	<section>
+		<h2>선택한 "{{ post.title }}" 게시글을 영구히 삭제합니다. 계속 하시겠습니까? </h2>
+		<form method="POST" action="">
+			{% csrf_token %}
+			<div class="cls_control_contain">
+				<input type="button" value="게시글 목록" class="cls_delete_btn">
+				<button type="submit" class="cls_delete_btn">게시글 삭제</button>
+			</div>
+		</form>
+	</section>
+</body>
+</html>

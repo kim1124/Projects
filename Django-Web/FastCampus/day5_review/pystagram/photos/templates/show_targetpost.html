@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ post.pk }}번 게시글 보기</title>
+	<style>
+		.cls_postlist {
+			width : 100%;
+			border : 1px solid black;
+		}
+
+		.cls_postlist th, tr, td {
+			border : 1px solid black;
+		}
+
+		thead th{width : 200px;}
+		tbody td{width: 200px; text-align: center;}
+
+	</style>
+</head>
+<body>
+	<h1> {{ post.title }} </h1>
+	<header>
+		<table class="cls_postlist">
+			<thead>
+				<tr>
+					<th>작성자</th>
+					<th>잠김 여부</th>
+					<th>작성 일자</th>
+					<th>수정 일자</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ post.user.username }}</td>
+					<td>{{ post.locked }}</td>
+					<td>{{ post.created_at }}</td>
+					<td>{{ post.updated_at }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</header>
+	<br>
+	<br>
+	<section>
+		<article>
+			{{ post.content }}
+		</article>
+	</section>
+</body>
+</html>

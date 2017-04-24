@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="{% static 'jquery.vintage.min.js' %}"></script>
+    <script src="{% static 'vintage.presets.js' %}"></script>
+    <script>
+
+        //
+
+        $(document).ready(function(){
+            $('input[type="file"]').on('change',function(e){
+                var reader = new FileReader();
+                reader.onerror = function(e) { console.log(e) }
+                reader.onload = function(e){
+
+                    console.log("Preview !!");
+
+                    if ((/^data\:image\/(png);base64/i).test(e.target.result)) {
+
+                        $('#preview > img').attr('src', e.target.result);
+
+                    }
+                    else{
+
+                        alert("Png 파일만 업로드할 수 있습니다.");
+
+                    }
+
+                }
+
+                reader.readAsDataURL(this.files[0]);
+
+            });
+
+        });
+
+     </script>
+</head>
+
+<body>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="preview"><img src=""></div>
+        {{ form.as_p }}
+        <p>
+            <button type="submit">저장</button>
+        </p>
+    </form>
+</body>
+
+</html>
+

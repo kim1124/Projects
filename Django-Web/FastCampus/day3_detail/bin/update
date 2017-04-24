@@ -1,0 +1,10 @@
+#!/Users/kim1124/Projects/webcamp/day3_detail/bin/python3
+# EASY-INSTALL-ENTRY-SCRIPT: 'update==0.4.4','console_scripts','update'
+__requires__ = 'update==0.4.4'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('update==0.4.4', 'console_scripts', 'update')()
+    )

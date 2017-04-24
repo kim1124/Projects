@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>게시글 작성</title>
+	<style>
+		.cls_postlist {
+			width : 100%;
+			border : 1px solid black;
+		}
+
+		.cls_postlist th, tr, td {
+			border : 1px solid black;
+		}
+
+		.cls_form_content {
+
+			width : 100%;
+			height : 400px;
+
+		}
+
+		.cls_form_textfield {
+
+			width : 100%;
+
+		}
+
+		.cls_save_btn {
+			width : 100px;
+		}
+
+		.cls_control_contain {
+
+			float : right;
+
+		}
+
+		thead th{width : 200px;}
+		tbody td{width: 200px; text-align: center;}
+
+	</style>
+</head>
+<body>
+	<header>
+		<h1>글 수정</h1>
+		<table class="cls_postlist">
+			<thead>
+				<tr>
+					<th>작성자</th>
+					<th>잠김 여부</th>
+					<th>숨김 여부</th>
+					<th>작성 시간</th>
+					<th>수정 시간</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ post.userid }}</td>
+					<td>{{ post.locked }}</td>
+					<td>{{ post.hidden }}</td>
+					<td>{{ post.created_at }}</td>
+					<td>{{ post.updated_at }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</header>
+	<br>
+	<form method="POST" action="">
+		{% csrf_token %}
+		<div>
+			<h4>글 제목</h4>
+			<input type="text" name="title" class="cls_form_textfield" value="{{ post.title }}">
+			<br>
+			<h4>사진 경로</h4>
+			<input type="text" name="filepath" class="cls_form_textfield" value="{{ post.filepath }}">
+			<h4>비밀 번호</h4>
+			<input type="password" name="passwd" class="cls_form_textfield" value="{{ post.passwd }}">
+			<br>
+			<h4>글 본문</h4>
+			<textarea name="content" label="" class="cls_form_content" text="{{ post.content }}"></textarea>
+		</div>
+		<footer>
+			<div class="cls_control_contain">
+				<button type="submit" class="cls_save_btn">수정</button>
+			</div>
+		</footer>
+	</form>
+</body>
+</html>

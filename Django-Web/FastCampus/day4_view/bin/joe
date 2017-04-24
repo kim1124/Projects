@@ -1,0 +1,10 @@
+#!/Users/kim1124/Projects/webcamp/day3_detail/bin/python3
+# EASY-INSTALL-ENTRY-SCRIPT: 'joe==0.0.7','console_scripts','joe'
+__requires__ = 'joe==0.0.7'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('joe==0.0.7', 'console_scripts', 'joe')()
+    )

@@ -1,0 +1,106 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title> 게시글 목록 보기 </title>
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	<style>
+
+		* {
+			padding : 10px 10px 10px 10px;
+		}
+
+		.cls_postlist {
+			width : 100%;
+			border : 1px solid black;
+		}
+
+		.cls_postlist th, tr, td {
+			border : 1px solid black;
+		}
+
+		.cls_write_btn {
+			width : 100px;
+		}
+
+		.cls_control_contain {
+
+			float : right;
+
+		}
+
+		thead th{width : 200px;}
+		tbody td{width: 200px; text-align: center;}
+
+	</style>
+</head>
+<body>
+	<header>
+		<h1>게시글 목록</h1>
+	</header>
+	<section>
+		<table class="cls_postlist">
+			<thead>
+				<tr>
+					<th class="cls_th_width">번호</th>
+					<th class="cls_th_width">제목</th>
+					<th class="cls_th_width">작성자</th>
+					<th class="cls_th_width">잠김 여부</th>
+					<th class="cls_th_width">수정 시간</th>
+					<th class="cls_th_width">게시글 관리</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for post in posts %}
+					<tr>
+						<td>{{ post.pk }}</td>
+						<td>{{ post.title }}</td>
+						<td>{{ post.user.username }}</td>
+						<td>{{ post.locked }}</td>
+						<td>{{ post.updated_at }}</td>
+						<td colspan="4">
+							<a href="{% url 'photos:targetpost' post.pk %}">보기</a>
+							<a href="{% url 'photos:edittargetpost' post.pk %}">수정</a>
+							<a href="{% url 'photos:deletetargetpost' post.pk %}">삭제</a>
+							<a href="">추천</a>
+						</td>
+					</tr>
+				{% empty %}
+					<p>등록된 게시글이 없습니다.</p>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+	<br>
+	{% comment %}
+	<div>
+		{% if posts.has_previous %}
+		<span><a href="?page={{ posts.previous_page_number }}">이전 페이지</a></span>
+		{% endif %}
+		<span>{{ posts.number }} / {{ posts.paginator.num_pages }}</span>
+		{% if posts.has_next %}
+		<span><a href="?page={{ posts.next_page_number }}">다음 페이지</a></span>
+		{% endif %}
+	</div>
+	{% endcomment %}
+	{% bootstrap_pagination posts %}
+	<br>
+	<footer>
+		<div class="cls_control_contain">
+			<input type="button" value="글쓰기" class="cls_write_btn" onclick="moveCreatePost()">
+			{# {% bootstrap_button "글쓰기" button_class="cls_write_btn" %} #}
+		</div>
+	</footer>
+
+	<script type="text/javascript">
+		function moveCreatePost(){
+
+			location.href="create/";
+
+		}
+	</script>
+
+</body>
+</html>

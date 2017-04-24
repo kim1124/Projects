@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>게시글 작성</title>
+	<style>
+		.cls_postlist {
+			width : 100%;
+			border : 1px solid black;
+		}
+
+		.cls_postlist th, tr, td {
+			border : 1px solid black;
+		}
+
+		.cls_form_content {
+
+			width : 100%;
+			height : 400px;
+
+		}
+
+		.cls_form_textfield {
+
+			width : 100%;
+
+		}
+
+		.cls_save_btn {
+			width : 100px;
+		}
+
+		.cls_control_contain {
+
+			float : right;
+
+		}
+
+		thead th{width : 200px;}
+		tbody td{width: 200px; text-align: center;}
+
+	</style>
+</head>
+<body>
+	<header>
+		<h1>글 작성</h1>
+	</header>
+	<br>
+	<form method="POST" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div>
+			{% comment %}
+			<h4>글 제목</h4>
+			<input type="text" name="title" class="cls_form_textfield">
+			<br>
+			<h4>사진 경로</h4>
+			<input type="text" name="filepath" class="cls_form_textfield">
+			<h4>비밀 번호</h4>
+			<input type="text" name="passwd" class="cls_form_textfield">
+			<br>
+			<h4>글 본문</h4>
+			{# <textarea name="content" label="" class="cls_form_content"></textarea> #}
+			{% endcomment %}
+			{{ form.as_p }}
+		</div>
+		<footer>
+			<div class="cls_control_contain">
+				<button type="submit" class="cls_save_btn">저장</button>
+			</div>
+		</footer>
+	</form>
+</body>
+</html>

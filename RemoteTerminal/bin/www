@@ -1,0 +1,107 @@
+#!/usr/bin/env node
+
+/*
+
+일 시 : 2017.03
+
+설 명 : Node.JS 서버를 구성합니다.
+
+수 정 :
+
+*/
+
+// 0. 필수 구성요소 Import
+
+var app = require('../app');
+var http = require('http');
+var debug = require('debug')('pty:server');
+
+// import Websocket from '../public/javascripts/websocket';
+
+import Websocket from '../public/javascripts/websocket';
+import {PtyManager} from '../public/javascripts/ptymanager';
+
+// 1. HTTP 서버 포트 구성
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+// 2. HTTP 서버 생성
+
+var server = http.createServer(app);
+
+// 3. Websocket HTTP 서버와 연동
+
+console.log("Websocket ->  ", Websocket);
+
+Websocket.createSocketServer(server);
+
+// 3-1. 터미널 매니저 생성
+
+app.set('obj_manager', new PtyManager());
+
+// 4. 서버 생성
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
